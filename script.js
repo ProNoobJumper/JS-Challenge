@@ -4,6 +4,7 @@ const priceElement = document.getElementsByClassName('price')[0];
 const card = document.getElementsByClassName('card-main')[0];
 const quantityInput = document.getElementById('qty');
 const totalElement = document.getElementById('total');
+const addToCartButton = document.getElementById('add-to-cart-btn');
 
 //Product's original state
 const originalPriceText = priceElement.innerText;
@@ -54,6 +55,22 @@ applyButton.addEventListener('click', function() {
 
 //Quantity input field listener
 quantityInput.addEventListener('input', updateTotal);
+
+//"Add to Cart" button feedback listener
+addToCartButton.addEventListener('click', function() {
+    // Store the original text to revert back to
+    const originalText = addToCartButton.innerText;
+
+    // Change text and background color for feedback
+    addToCartButton.innerText = 'Added!';
+    addToCartButton.style.backgroundColor = 'gray';
+
+    // Set a timer to revert changes after 1.5 seconds
+    setTimeout(() => {
+        addToCartButton.innerText = originalText;
+        addToCartButton.style.backgroundColor = ''; // Reverts to default style
+    }, 1500);
+});
 
 //Calculate the initial total when the page first loads
 updateTotal();
